@@ -13,7 +13,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const listItem = document.createElement('li');
         listItem.textContent = taskDescription;
         taskList.appendChild(listItem);
-        taskInput.value = 'Wash the dishes'; 
+        taskInput.value = ''; 
       }
     });
 });
+
