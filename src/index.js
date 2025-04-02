@@ -14,6 +14,15 @@ document.addEventListener("DOMContentLoaded", () => {
         listItem.textContent = taskDescription;
         taskList.appendChild(listItem);
         taskInput.value = ''; 
+        const deleteButton = document.createElement('button');
+      deleteButton.textContent = 'Delete';
+      deleteButton.addEventListener('click', () => {
+        taskList.removeChild(listItem); 
+      });
+
+      listItem.appendChild(deleteButton); 
+      taskList.appendChild(listItem);
+      taskInput.value = '';
       }
     });
 });
