@@ -37,21 +37,26 @@ global.XMLHttpRequest = dom.window.XMLHttpRequest;
 
 // Sample test suite for JavaScript event handling
 describe('Handling form submission', () => {
-  let form
-  let formInput
-  let taskList
+  let form;
+  let formInput;
+  let taskList;
 
-  before(() => {
-    form = document.querySelector('#create-task-form')
-    formInput = document.querySelector('#new-task-description')
-    taskList = document.querySelector('#tasks')
-  })
+  beforeEach(() => {
+    form = document.querySelector('#create-task-form');
+    formInput = document.querySelector('#new-task-description');
+    taskList = document.querySelector('#tasks');
+    //Clear the task list before each test.
+    taskList.innerHTML = "";
+  });
 
   it('should add an event to the form and add input to webpage', () => {
     // Simulate user input
-    formInput.value = 'Wash the dishes'
-    const event = new dom.window.Event('submit')
-    form.dispatchEvent(event)
-    expect(taskList.textContent).to.include('Wash the dishes')
-  })
-})
+    formInput.value = 'Wash the dishes';
+    const event = new dom.window.Event('submit');
+    form.dispatchEvent(event);
+    //Important change: Check for the creation of an li element
+    const taskItems = taskList.querySelectorAll('li');
+    expect(taskItems.length).to.equal(1);
+    expect(taskItems[0].textContent).to.include('Wash the dishes');
+  });
+});
